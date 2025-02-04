@@ -7,7 +7,7 @@ N="\e[0m"
 
 logs_folder="/var/log/shellscript-logs"
 log_file=$(echo $0 | cut -d "." -f1)
-timestamp=$(date +%y-%m-%d-%h-%m-%s)
+timestamp=$(date +%Y-%m-%d-%H-%M-%S)
 log_file_name="$logs_folder/$log_file-$timestamp.log"
 
 userid=$(id -u)
