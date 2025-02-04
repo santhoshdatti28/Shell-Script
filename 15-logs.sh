@@ -11,6 +11,7 @@ timestamp=$(date +%Y-%m-%d-%H-%M-%S)
 log_file_name="$logs_folder/$log_file-$timestamp.log"
 
 userid=$(id -u)
+
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
@@ -19,7 +20,6 @@ VALIDATE(){
     else
         echo -e "$2 ... $G success $N"
     fi
-
 }
 echo "script started at exececuting at $timestamp &>>$log_file_name"
 if [ $userid -ne 0 ]
@@ -37,6 +37,7 @@ else
 fi
 
 dnf list installed git
+
 if [ $? -ne 0 ]
 then 
     dnf install git -y &>>$log_file_name
