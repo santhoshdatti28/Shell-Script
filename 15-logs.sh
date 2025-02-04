@@ -18,6 +18,7 @@ VALIDATE(){
         exit 1 
     else
         echo -e "$2 ... $G success $N"
+    fi
 
 }
 echo "script started at exececuting at $timestamp &>>log_file_name"
