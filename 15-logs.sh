@@ -14,23 +14,23 @@ userid=$(id -u)
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
-        echo -e "$2 ... $R Failed $N"
+        echo -e "$2 ... $R Failed $N
         exit 1 
     else
         echo -e "$2 ... $G success $N"
     fi
 
 }
-echo "script started at exececuting at $timestamp &>>log_file_name"
+echo "script started at exececuting at $timestamp &>>$log_file_name"
 if [ $userid -ne 0 ]
 then
-    echo "ERROR: you do not have access &>>log_file_name"
+    echo "ERROR: you do not have access &>>$log_file_name"
     exit 1
 fi
 dnf list installed mysql
 if [ $? -ne 0 ]
 then 
-    dnf install mysql -y  &>>log_file_name
+    dnf install mysql -y  &>>$log_file_name
     VALIDATE $? "installing mysql"
 else
     echo -e "mysql is already... $Y installed $N"
@@ -39,7 +39,7 @@ fi
 dnf list installed git
 if [ $? -ne 0 ]
 then 
-    dnf install git -y &>>log_file_name
+    dnf install git -y &>>$log_file_name
     VALIDATE $? "installing git"
 else
     echo -e "git is already... $Y installed $N"
