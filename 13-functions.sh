@@ -7,6 +7,7 @@ VALIDATE(){
         exit 1
     else 
         echo "$2...success"
+    fi 
 }
 if [ $userid -ne 0 ]
 then
