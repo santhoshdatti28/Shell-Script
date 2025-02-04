@@ -1,6 +1,6 @@
 #!/bin/bash
 R="\e[31m"
-G="\e[32m'
+G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 logs_folder="/var/log/shellscript-logs"
@@ -11,9 +11,9 @@ userid=$(id -u)
 VALIDATE(){
     if [ $1? -ne 0 ]
     then
-        echo -e "$2... $R $N"
+        echo -e "$2... $R failure $N"
     else
-        echo -e "$2... $G $N"
+        echo -e "$2... $G success $N"
     fi
 
 }
@@ -25,7 +25,9 @@ CHECKROOT(){
         fi
 }
 echo "script started and executing at: $timestamp" &>>$log_file_name
+
 CHECKROOT
+
 for package in $@
 do
     dnf list installed $package &>>$log_file_name
