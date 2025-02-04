@@ -18,7 +18,7 @@ VALIDATE(){
 
 }
 
-echo "script started and excuting at : $timestamp &>>$log_file_name"
+echo "script started and excuting at : $timestamp" &>>$log_file_name
 
 if [ $userid -ne 0 ]
 then
@@ -37,7 +37,7 @@ fi
 dnf list installed git
 if [ $? -ne 0 ]
 then
-    dnf install git -y &>>log_file_name
+    dnf install git -y &>>$log_file_name
     VALIDATE $? "installing git"
 else
     echo -e "git is already... $Y installed $N"
