@@ -2,5 +2,5 @@
 
 while read -r file
 do
-    echo "$file"
+    echo $file
 done < $17-delete-old-logs.sh
