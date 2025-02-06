@@ -40,6 +40,6 @@ while read -r $file
 do
     echo "deleting file: $file"
     rm -rf $file
-done <<<$files_delete
+done <<< $files_delete
 
 
