@@ -5,6 +5,8 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
+source_dir="/home/ec2-user/app-log"
+
 logs_folder="/var/log/expense-shell"
 log_file=$(echo $0 | cut -d "." -f1)
 timestamp=$(date +%Y-%m-%d-%H-M-%S)
@@ -33,7 +35,7 @@ CHECK_ROOT
 
 mkdir -p /var/log/expense-shell
 
-files_delete=$(find /home/ec2-user/app-log -name "*.log" -mtime +14)
+files_delete=$(find $source_dir -name "*.log" -mtime +14)
 echo "deleting files are: $files_delete"
 
 while read -r file
