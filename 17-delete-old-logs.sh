@@ -31,15 +31,17 @@ VALIDATE(){
 
 CHECK_ROOT
 
-mkdir -p /var/logs/expense-shell
+mkdir -p /var/log/expense-shell
 
 files_delete=$(find /home/ec2-user/app-log -name "*.log" -mtime +14)
 echo "deleting files are: $files_delete"
 
-while read -r $file
+while read -r file
 do
     echo "deleting file: $file"
     rm -rf $file
 done <<< $files_delete
+
+
 
 
