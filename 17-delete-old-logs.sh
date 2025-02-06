@@ -33,7 +33,7 @@ CHECK_ROOT
 
 mkdir -p /var/logs/expense-shell
 
-files_delete=$(find /root/app-log "*.log" -mtime +14)
+files_delete=$(find /home/ec2-user/app-log "*.log" -mtime +14)
 
 while read -r $file
 do
