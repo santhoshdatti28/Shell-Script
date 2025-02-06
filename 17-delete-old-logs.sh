@@ -34,6 +34,7 @@ CHECK_ROOT
 mkdir -p /var/logs/expense-shell
 
 files_delete=$(find /home/ec2-user/app-log -name "*.log" -mtime +14)
+echo "deleting files are: $files_delete"
 
 while read -r $file
 do
