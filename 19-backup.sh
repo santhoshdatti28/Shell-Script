@@ -22,7 +22,7 @@ mkdir -p /home/ec2-user/shellscript-logs
 
 
 USAGE(){
-    echo -e "$R usage: $N sh 18-backup.sh <SOURCE_DIR> <DEST_DIR> <DAYS(optional)>"
+    echo -e "$R usage: $N backup <SOURCE_DIR> <DEST_DIR> <DAYS(optional)>"
     exit1
 }
 
