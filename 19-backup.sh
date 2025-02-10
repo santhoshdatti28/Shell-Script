@@ -5,17 +5,17 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-source_dir=$1
-dest_dir=$2
-days=${3:-14} # if user is not providing number of days, we are taking 14 as default
+SOURCE_DIR=$1
+DEST_DIR=$2
+DAYS=${3:-14} # if user is not providing number of days, we are taking 14 as default
 
 mkdir -p /home/ec2-user/shellscript-logs
 
 
-logs_folder="/home/ec2-user/shellscript-logs"
-log_file=$(echo $0 | cut -d "." -f1)
-timestamp=$(date +%Y-%m-%d-%H-%M-%S)
-log_file_name="$logs_folder/$log_file-$timestamp.log"
+LOGS_FOLDER="/home/ec2-user/shellscript-logs"
+LOG_FILE=$(echo $0 | cut -d "." -f1)
+TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
+LOG_FILE_NAME="$logs_folder/$log_file-$timestamp.log"
 
 
 mkdir -p /home/ec2-user/shellscript-logs
@@ -31,34 +31,34 @@ then
     USAGE
 fi
 
-if [ ! -d $source_dir ]
+if [ ! -d $SOURCE_DIR ]
 then
     echo -e "$R does not exist...please check"
 fi
 
-if [ ! -d $dest_dir ]
+if [ ! -d $DEST_DIR ]
 then
     echo -e "$R does not exist...please check"
 fi
 
-echo "Script started executing at: $timestamp" &>>$LOG_FILE_NAME
+echo "Script started executing at: $TIMESTAMP" &>>$LOG_FILE_NAME
 
-files=$(find $source_dir -name "*.log" -mtime +$days)
+FILES=$(find $SOURCE_DIR -name "*.log" -mtime +$DAYS)
 
-if [ -n "$files" ] # true if there are files to zip
+if [ -n "$FILES" ] # true if there are files to zip
 then
-    echo "Files are: $files"
-    zip_file="$dest_dir/app-logs-$timestamp.zip"
-    find $source_dir -name "*.log" -mtime +$days | zip -@ "$zip_file"
-    if [ -f "$zip_file" ]
+    echo "Files are: $FILES"
+    ZIP_FILE="$DEST_DIR/app-logs-$TIMESTAMP.zip"
+    find $source_dir -name "*.log" -mtime +$DAYS | zip -@ "$ZIP_FILE"
+    if [ -f "$ZIP_FILE" ]
     then
         echo -e "Successfully created zip file for files older than $days"
         while read -r filepath # here filepath is the variable name, you can give any name
         do
-            echo "Deleting file: $filepath" &>>$log_file_name
+            echo "Deleting file: $filepath" &>>$LOG_FILE_NAME
             rm -rf $filepath
             echo "Deleted file: $filepath"
-        done <<< $files
+        done <<< $FILES
     else
         echo -e "$R Error:: $N Failed to create ZIP file "
         exit 1
