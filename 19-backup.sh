@@ -16,7 +16,7 @@ logs_folder="/home/ec2-user/shellscript-logs"
 log_file=$(echo $0 | cut -d "." -f1)
 timestamp=$(date +%Y-%m-%d-%H-%M-%S)
 log_file_name="$logs_folder/$log_file-$timestamp.log"
-zip_folder="$
+
 
 mkdir -p /home/ec2-user/shellscript-logs
 
