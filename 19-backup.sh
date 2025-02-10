@@ -49,7 +49,7 @@ if [ -n "$files" ]
 then
     echo "$files"
     zip_folder="$dest_dir/app-logs-$timestamp.zip"
-    find $source_dir - name "*.log" -mtime +$days | zip -@ "$files"
+    find $source_dir -name "*.log" -mtime +$days | zip -@ "$files"
     if [ -f "$zip_folder" ]
     then
         echo "Successfully created zip for the which are older than $days"
