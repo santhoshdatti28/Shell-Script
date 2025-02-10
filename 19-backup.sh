@@ -45,24 +45,25 @@ echo "Script started executing at: $timestamp" &>>$LOG_FILE_NAME
 
 files=$(find $source_dir -name "*.log" -mtime +$days)
 
-if [ -n "$files" ]
+if [ -n "$files" ] # true if there are files to zip
 then
-    echo "$files"
-    zip_folder="$dest_dir/app-logs-$timestamp.zip"
-    find $source_dir -name "*.log" -mtime +$days | zip -@ "$zip_folder"
-    if [ -f "$zip_folder" ]
+    echo "Files are: $files"
+    zip_file="$dest_dir/app-logs-$timestamp.zip"
+    find $source_dir -name "*.log" -mtime +$days | zip -@ "$zip_file"
+    if [ -f "$zip_file" ]
     then
-        echo "Successfully created zip for the which are older than $days"
-        while read -r filepath
+        echo -e "Successfully created zip file for files older than $days"
+        while read -r filepath # here filepath is the variable name, you can give any name
         do
-            echo "deleting files are: $filepath
+            echo "Deleting file: $filepath" &>>$log_file_name
             rm -rf $filepath
-            echo "deleted file: $filepath
+            echo "Deleted file: $filepath"
         done <<< $files
     else
-        echo -e "$R ERROR: $N failed to create zip files"
+        echo -e "$R Error:: $N Failed to create ZIP file "
         exit 1
     fi
+
 else
-    echo "no files found older than $days"
+    echo "No files found older than $days"
 fi
