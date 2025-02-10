@@ -23,7 +23,7 @@ mkdir -p /home/ec2-user/shellscript-logs
 
 USAGE(){
     echo -e "$R usage: $N backup <SOURCE_DIR> <DEST_DIR> <DAYS(optional)>"
-    exit1
+    exit 1
 }
 
 if [ $# -lt 2 ]
@@ -41,7 +41,7 @@ then
     echo -e "$R does not exist...please check"
 fi
 
-echo "Script started executing at: $TIMESTAMP" &>>$LOG_FILE_NAME
+echo "Script started executing at: $timestamp" &>>$LOG_FILE_NAME
 
 files=$(find $source_dir -name "*.log" -mtime +$days)
 
