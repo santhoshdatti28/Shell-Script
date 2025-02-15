@@ -18,6 +18,6 @@ do
 
 done <<< $disk_usage
 
-echo  "message: $msg"
+echo  -e "message: $msg"
 
 echo "$msg" | mutt -s "high disk usage" santhosh.datti99@gmail.com
