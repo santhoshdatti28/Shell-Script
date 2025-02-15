@@ -11,11 +11,13 @@ do
     #echo "$partition"
     if [ $usage -ge $disk_threshold ]
     then
-        msg+="high disk usage on partition: $partition , usage is: $usage \n"
+        msg+="high disk usage on partition: $partition , usage is: $usage"
         #echo "$msg"
     fi
 
 
 done <<< $disk_usage
+
+echo  "message: $msg"
 
 echo "$msg" | mutt -s "high disk usage" santhosh.datti99@gmail.com
